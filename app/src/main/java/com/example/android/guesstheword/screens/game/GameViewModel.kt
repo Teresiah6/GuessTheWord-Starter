@@ -6,9 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-    private val _eventGameFinish = MutableLiveData<Boolean>()
-    val eventGameFinish: LiveData<Boolean>
-    get() = _eventGameFinish
+
 
     // The current word
     private val _word = MutableLiveData<String>()
@@ -20,6 +18,11 @@ class GameViewModel : ViewModel() {
     val score: LiveData<Int>
     // make the score accesible in Game Fragment by setting a getter
         get() = _score
+
+
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
 
     lateinit var wordList: MutableList<String>
 
@@ -64,7 +67,7 @@ class GameViewModel : ViewModel() {
      * Moves to the next word in the list
      */
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
+        if (wordList.isEmpty()) {
             onGameFinish()
         }else{
 

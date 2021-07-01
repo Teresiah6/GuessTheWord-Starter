@@ -58,9 +58,12 @@ class ScoreFragment : Fragment() {
         )
         //binding.scoreText.text = viewModel.score.toString()
         //attach observer for the score liveData obj
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+        binding.scoreViewModel = viewModel
+
+        binding.lifecycleOwner = viewLifecycleOwner
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
         //observer for eventPlayAgain
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
@@ -68,7 +71,8 @@ class ScoreFragment : Fragment() {
                 viewModel.onPlayAgainComplete()
             }
         })
-        binding.playAgainButton.setOnClickListener {  viewModel.onPlayAgain()  }
+        //eliminated due to databinding
+        //binding.playAgainButton.setOnClickListener {  viewModel.onPlayAgain()  }
 
         return binding.root
 
